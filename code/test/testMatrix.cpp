@@ -12,7 +12,7 @@
 #include <exception>
 #include <cstdlib>
 #include <complex>
-
+#include <vector>
 /**
  * Unit tests for the matrix class
  */
@@ -157,8 +157,6 @@ void testConstructors() {
     BOOST_CHECK( b.data() != a.data() );
   }
 }
-
-
 /**
  * Instantiate and test the methods of the Matrix class
  */
@@ -274,6 +272,44 @@ void testArithmetic() {
 
 BOOST_AUTO_TEST_CASE(Arithmetic) {
   dispatchTest(testArithmetic);  
+}
+
+
+template <class M>
+void mxmtest(){
+  M a = {{1, 2, 3}, 
+        {-1, 0, 3}}; //2x3;
+  M b = {{2, 3, 4, 5}, 
+         {1, 3, 0 ,1}}; //2x4;
+  try{
+    M c = a*b;
+    BOOST_CHECK_MESSAGE(false, "Not propertly checking the dimensions");
+  }catch(anpi::Exception& exc){
+    BOOST_CHECK(true);
+  }
+}
+
+template <class M, typename T>
+void mxvtest(){
+  M a = {{1, 2, 3},
+         {-1, 0, 3}}; //2x3;
+  std::vector<T> b = {2, 3, 4, 5};//4x1
+  try{
+    std::vector<T> c = a*b;
+    BOOST_CHECK_MESSAGE(false, "Not propertly checking the dimensions");
+  }catch(anpi::Exception& exc){
+    BOOST_CHECK(true);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(ProductMxM){
+  mxmtest<fmatrix>();
+  mxmtest<dmatrix>();
+}
+
+BOOST_AUTO_TEST_CASE(ProductMxV){
+  mxvtest<fmatrix, float>();
+  mxvtest<dmatrix, double>();
 }
   
 BOOST_AUTO_TEST_SUITE_END()
