@@ -11,6 +11,7 @@
 #include <cmath>
 #include <limits>
 #include <functional>
+#include <iostream>
 #include <algorithm>
 
 #include "Exception.hpp"
