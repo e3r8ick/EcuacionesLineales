@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "LUDoolittle.hpp"
+#include "LUCrout.hpp"
 
 int main() {
 
@@ -26,6 +27,7 @@ int main() {
   
   std::vector<size_t> p = {0,0,0,0};
   anpi::luDoolittle(A,LU,p);
+  anpi::luCrout(A,LU,p);
 
 
 

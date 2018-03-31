@@ -136,19 +136,19 @@ void luCrout(const Matrix<T> &A,
   int n = LU.rows();
   double sum = 0;
   double sum2 = 0;
-  double sum3 = 0
+  double sum3 = 0;
   for(int i =0; i < n-1 ;++i){
     for(int j =1; j< n-1; ++j){
       LU[i][1] = A[i][1];
       LU[1][j] = A[1][j]/LU[1][1];
-      for(int k = 0; k<n-1;++k){
+      /*for(int k = 0; k<n-1;++k){
         sum +=LU[i][k]*LU[k][j];
       }
       LU[i][j] = A[i][j]-sum;
       for(int t=j+1; t<n-1;++t){
         sum2 += LU[j][i]*LU[i][k];
       }
-      LU[j][k] = ()/()
+      LU[j][k] = ()/()*/
     }
   }
 
