@@ -14,20 +14,28 @@
 
 #include "LUDoolittle.hpp"
 #include "LUCrout.hpp"
+#include "Pivot.hpp"
 
 int main() {
 
   // Some example code
    // Some example code
-  anpi::Matrix<float> A = { {-1,-2,1,2},
-                            { 2, 0,1,2},
-                            {-1,-1,0,1},
-                            { 1, 3,-1,1} };
+  //anpi::Matrix<float> A = { {-1,-2,1,2},
+    //                        { 2, 0,1,2},
+      //                      {-1,-1,0,1},
+        //                    { 1, 3,-1,1} };
+  //anpi::Matrix<float> A = {{0, 0,2},{-1, 5 ,-2},{3,6,7}};
   anpi::Matrix<float> LU;
-  
-  std::vector<size_t> p = {0,0,0,0};
-  anpi::luDoolittle(A,LU,p);
-  anpi::luCrout(A,LU,p);
+  anpi::Matrix<float> A = {{1, 3, 5},{-2, 4 ,6},{5,0,3}};
+
+  std::vector<size_t> p;
+  //anpi::luDoolittle(A,LU,p);
+  anpi::Matrix<float> U, L;
+  std::cout << "crout" << std::endl;
+  anpi::Matrix<float> LUC;
+  std::vector<size_t> pC;
+  anpi::luCrout(A,LUC,pC);
+  anpi::unpackCrout(LUC, L, U );
 
 
 
