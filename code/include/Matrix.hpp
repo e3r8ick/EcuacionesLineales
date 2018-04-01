@@ -352,6 +352,17 @@ namespace anpi
   template<typename T,class Alloc>
   Matrix<T,Alloc> operator*(const Matrix<T,Alloc>& a,
                             const Matrix<T,Alloc>& b);
+
+
+  template<typename T,class Alloc>
+  std::vector<T> operator*(const Matrix<T,Alloc>& a, 
+                           const std::vector<T>& b);
+
+  template<typename T, class Alloc>
+  std::vector<T> operator*(const std::vector<T>& b, 
+                           const Matrix<T,Alloc>& a);
+
+
   //@}
   
 } // namespace ANPI
