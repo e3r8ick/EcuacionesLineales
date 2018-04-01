@@ -19,25 +19,52 @@
 #ifndef ANPI_LU_CROUT_HPP
 #define ANPI_LU_CROUT_HPP
 
-namespace anpi {
+namespace anpi
+{
 
-  /**
+/**
    * Auxiliary method used to debug LU decomposition.
    *
    * It separates a packed LU matrix into the lower triangular matrix
    * L and the upper triangular matrix U, such that the diagonal of U
    * is composed by 1's.
    */
-  template<typename T>
-  void unpackCrout(const Matrix<T>& LU,
-                   Matrix<T>& L,
-                   Matrix<T>& U) {
+template <typename T>
+void unpackCrout(const Matrix<T> &LU,
+                 Matrix<T> &L,
+                 Matrix<T> &U)
+{
 
-    throw anpi::Exception("To be implemented yet");
 
+  U = LU;
+  int rows = LU.rows();
+  int cols = LU.cols();
+  if (rows != cols){
+    throw anpi::Exception("Matriz debe ser cuadrada.");
   }
+  L = Matrix<T>(rows, cols, 0.0);
+  U[0][0] = 1;
   
-  /**
+  for (int i = 0; i < rows; ++i){
+    U[i][i] = 1;
+    L[i][i] = LU[i][i];
+    for (int j = 0; j < i; j++){
+      U[i][j] = 0;
+      L[i][j] = LU[i][j];
+    }
+  }
+
+  /*print the results*/
+  std::cout << std::endl << "Matrix U: " << std::endl;
+  printM(U);
+  std::cout << std::endl << "Matrix L: " << std::endl;
+  printM(L);
+  
+
+}
+
+
+/**
    * Decompose the matrix A into a lower triangular matrix L and an
    * upper triangular matrix U.  The matrices L and U are packed into
    * a single matrix LU.  
@@ -56,111 +83,59 @@ namespace anpi {
    * @throws anpi::Exception if matrix cannot be decomposed, or input
    *         matrix is not square.
    */
-  template <typename T>
-void pivot(const Matrix<T> &A,
-           Matrix<T> &LU,
-           std::vector<size_t> &permut)
-{
-  LU = A;
-  int rows = A.rows();
-  int columns = A.cols();
-  if (rows != columns){
-    throw anpi::Exception("La matriz debe ser cuadrada.");
-  }
-  T mayor;
-  int index = 0;
-  bool setMayor;
-  bool inPermutation;
-  for (int j = 0; j < columns; ++j)
-  {
-    inPermutation = false;
-    setMayor = false;
-    for (int i = 0; i < rows; ++i)
-    {
-
-      for (int k = 0; k < j; ++k)
-      {
-        if ((int)permut[k] == (int)i)
-        {
-          inPermutation = true;
-          break;
-        }
-      } //end iteración permutación
-      if (!inPermutation)
-      {
-        if (!setMayor)
-        {
-          index = i;
-          mayor = A[i][j];
-          setMayor = true;
-        }
-        else if (std::abs(mayor) < std::abs(A[i][j]))
-        {
-          index = i;
-          setMayor = true;
-          mayor = A[i][j];
-        }
-      }
-      else
-      {
-        inPermutation = false;
-      }
-      //not in permutation
-    } //end rows A
-    permut.push_back(index);
-    for (int n = 0; n < columns; ++n)
-    {
-      LU[j][n] = A[index][n];
-    } //end for pivoting
-  }   //end columns A
-}
 
 template <typename T>
 void luCrout(const Matrix<T> &A,
-                 Matrix<T> &LU,
-                 std::vector<size_t> &permut)
+             Matrix<T> &LU,
+             std::vector<size_t> &permut)
 {
   //pivoteo
   pivot(A, LU, permut);
-  std::cout << "after pivot: " << std::endl;
-  for (int i = 0; i < LU.rows(); ++i)
-  {
-    for (int j = 0; j < LU.cols(); ++j)
-    {
-      std::cout << LU[i][j] << "\t";
-    }
-    std::cout << std::endl;
-  }
 
   //descomposición LU
-  int n = LU.rows();
-  double sum = 0;
-  double sum2 = 0;
-  double sum3 = 0;
-  for(int i =0; i < n-1 ;++i){
-    for(int j =1; j< n-1; ++j){
-      LU[i][1] = A[i][1];
-      LU[1][j] = A[1][j]/LU[1][1];
-      /*for(int k = 0; k<n-1;++k){
-        sum +=LU[i][k]*LU[k][j];
-      }
-      LU[i][j] = A[i][j]-sum;
-      for(int t=j+1; t<n-1;++t){
-        sum2 += LU[j][i]*LU[i][k];
-      }
-      LU[j][k] = ()/()*/
-    }
+  int n = A.rows();
+  int m = A.cols();
+  if (m != n)
+  {
+    throw anpi::Exception("La matriz debe ser cuadrada");
+  }
+  for (int j = 1; j < n; ++j)
+  {
+    LU[0][j] = LU[0][j] / LU[0][0];
   }
 
-  std::cout << "after LU " << std::endl;
-  for (int m = 0; m < LU.rows(); ++m)
+  T sum;
+  for (int j = 1; j < n; ++j)
   {
-    for (int x = 0; x < LU.cols(); ++x)
+
+    for (int i = j; i < n; ++i)
     {
-      std::cout << LU[m][x] << "\tt";
+      sum = 0;
+      for (int k = 0; k < j; ++k)
+      {
+        sum = LU[i][k] * LU[k][j];
+      }
+      LU[i][j] -= sum;
     }
-    std::cout << std::endl;
+
+    for (int k = j + 1; k < n; ++k)
+    {
+      sum = 0;
+      for (int i = 0; i < j; ++i)
+      {
+        sum = LU[j][i] * LU[i][k];
+      }
+      LU[j][k] = (LU[j][k] - sum) / LU[j][j];
+    }
   }
+  sum = 0;
+  for (int k = 0; k < n - 2; ++k)
+  {
+    sum = LU[n - 1][k] * LU[k][n - 1];
+  }
+  LU[n - 1][n - 1] -= sum;
+
+  printM(LU);
 }
 
 } //anpi
