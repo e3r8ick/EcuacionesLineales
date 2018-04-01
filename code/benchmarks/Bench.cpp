@@ -24,6 +24,20 @@
 namespace anpi
 {
 
+/*
+* The @bench is an instance of a class that must provide at least
+ * the following:
+ * - an void prepare(const size_t size) method, that initializes the
+ *   state of the instance as required for the evaluation.  This
+ *   method is called outside the performance measurements.
+ * - an inline void eval() method that performs the evaluation.
+ *
+ * The following variables are available in PREFIX and CODE:
+ * - size holds the current evaluated size (type size_t)
+ * - s    holds the index of the current evaluated size
+ * - i    index of the current repetition
+ */
+
 
 } //anpi
 
