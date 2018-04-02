@@ -35,34 +35,27 @@ void unpackCrout(const Matrix<T> &LU,
                  Matrix<T> &U)
 {
 
-
   U = LU;
   int rows = LU.rows();
   int cols = LU.cols();
-  if (rows != cols){
+  if (rows != cols)
+  {
     throw anpi::Exception("Matriz debe ser cuadrada.");
   }
   L = Matrix<T>(rows, cols, 0.0);
   U[0][0] = 1;
-  
-  for (int i = 0; i < rows; ++i){
+
+  for (int i = 0; i < rows; ++i)
+  {
     U[i][i] = 1;
     L[i][i] = LU[i][i];
-    for (int j = 0; j < i; j++){
+    for (int j = 0; j < i; j++)
+    {
       U[i][j] = 0;
       L[i][j] = LU[i][j];
     }
   }
-
-  /*print the results*/
-  std::cout << std::endl << "Matrix U: " << std::endl;
-  printM(U);
-  std::cout << std::endl << "Matrix L: " << std::endl;
-  printM(L);
-  
-
 }
-
 
 /**
    * Decompose the matrix A into a lower triangular matrix L and an
@@ -99,11 +92,14 @@ void luCrout(const Matrix<T> &A,
   {
     throw anpi::Exception("La matriz debe ser cuadrada");
   }
+  if (LU[0][0] == 0)
+  {
+    throw anpi::Exception("Imposible realizar la descomposición con 0 en la diagonal");
+  }
   for (int j = 1; j < n; ++j)
   {
     LU[0][j] = LU[0][j] / LU[0][0];
   }
-
   T sum;
   for (int j = 1; j < n; ++j)
   {
@@ -113,7 +109,7 @@ void luCrout(const Matrix<T> &A,
       sum = 0;
       for (int k = 0; k < j; ++k)
       {
-        sum = LU[i][k] * LU[k][j];
+        sum += LU[i][k] * LU[k][j];
       }
       LU[i][j] -= sum;
     }
@@ -123,20 +119,17 @@ void luCrout(const Matrix<T> &A,
       sum = 0;
       for (int i = 0; i < j; ++i)
       {
-        sum = LU[j][i] * LU[i][k];
+        sum += LU[j][i] * LU[i][k];
       }
       LU[j][k] = (LU[j][k] - sum) / LU[j][j];
+      if (LU[j][j] == 0)
+      {
+        throw anpi::Exception("Imposible realizar la descomposición con 0 en la diagonal");
+      }
     }
   }
-  sum = 0;
-  for (int k = 0; k < n - 2; ++k)
-  {
-    sum = LU[n - 1][k] * LU[k][n - 1];
+    sum = 0; 
   }
-  LU[n - 1][n - 1] -= sum;
-
-  printM(LU);
-}
 
 } //anpi
 

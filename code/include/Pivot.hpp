@@ -27,8 +27,10 @@ namespace anpi
 //prints a matrix
 template <typename T>
 void printM(const Matrix<T> &M){
-  for (int i = 0 ; i < M.rows(); ++i){
-    for (int j = 0; j < M.cols(); ++j){
+  int rows = M.rows();
+  int cols = M.cols();
+  for (int i = 0 ; i < rows; ++i){
+    for (int j = 0; j < cols; ++j){
       std::cout << M[i][j] << "\t\t";
     }
     std::cout << std::endl;
