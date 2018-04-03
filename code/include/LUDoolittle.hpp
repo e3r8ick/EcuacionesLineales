@@ -52,13 +52,6 @@ void unpackDoolittle(const Matrix<T> &LU,
       L[i][j] = LU[i][j];
     }
   }
-
-  /*print the results
-  std::cout << std::endl << "Matrix U: " << std::endl;
-  printM(U);
-  std::cout << std::endl << "Matrix L: " << std::endl;
-  printM(L);
-  */
 }
 
 /**
@@ -95,18 +88,12 @@ void luDoolittle(const Matrix<T> &A,
     {
       T factor = LU[i][k] / LU[k][k];
       LU[i][k] = factor;
-      std::cout << "factor" << factor << std::endl;
       for (int j = k + 1; j < n; ++j)
       {
         LU[i][j] -= factor * LU[k][j];
       }
     }
   }
-
-  /*
-  std::cout << "after LU " << std::endl;
-  printM(LU);
-  */
 }
 
 } //anpi
