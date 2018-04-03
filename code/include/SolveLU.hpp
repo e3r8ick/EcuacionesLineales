@@ -102,9 +102,6 @@ bool solveLU(const anpi::Matrix<T> &A,
         x[i] = (y[i] - sum) / U[i][i];
     }
 
-    
-    x = L*U*x;
-
     return true;
 }
 
