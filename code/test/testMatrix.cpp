@@ -276,10 +276,10 @@ BOOST_AUTO_TEST_CASE(Arithmetic) {
 
 
 
-template <class M>
+template <class M, typename T>
 
 void mxmtest(){
-
+  T eps = std::numeric_limits<T>::epsilon();
   M a = {{1, 2, 3}, 
         {-1, 0, 3}}; //2x3;
   M b = {{2, 3, 4, 5}, 
@@ -297,9 +297,9 @@ void mxmtest(){
   M zero = {{0 , 0, 0},{0, 0, 0}, {0,0,0}};
   a = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
   M p = a * zero;
-  for (int i = 0; i < 3; ++i){
-    for (int j = 0; j < 3; ++j){
-      BOOST_CHECK(p[i][j] == 0);
+  for (int i = 0; i < (int) a.rows(); ++i){
+    for (int j = 0; j < (int) a.cols(); ++j){
+      BOOST_CHECK(abs(p[i][j])<eps);
     }
   }
 
@@ -308,7 +308,7 @@ void mxmtest(){
   p = a * ident;
   for (int i = 0; i < 3; ++i){
     for (int j = 0; j < 3; ++j){
-      BOOST_CHECK(p[i][j] == a[i][j]);
+      BOOST_CHECK(abs(p[i][j] - a[i][j]) < eps);
     }
   }
 
@@ -316,10 +316,15 @@ void mxmtest(){
   a = {{1,2,3},{0,1,4}, {5,6,0}};
   M inv = {{-24,18,5},{20,-15,-4},{-5,4,1}};
   p = a * inv;
-  BOOST_CHECK(p[0][0] == 1 && p[1][1] == 1 && p[2][2] == 1);
-  BOOST_CHECK(p[0][1] == 0 && p[0][2] == 0);
-  BOOST_CHECK(p[1][0] == 0 && p[1][2] == 0);
-  BOOST_CHECK(p[2][1] == 0 && p[2][0] == 0);
+  for (int i = 0; i < (int) a.rows(); ++i){
+    for (int j = 0; j < (int) a.cols(); ++j){
+      if (i == j){
+        BOOST_CHECK(abs(p[i][j] - 1 ) < eps);
+      }else{
+        BOOST_CHECK(abs(p[i][j]) < eps);
+      }
+    }
+  }
 }
 
 template <class M, typename T>
@@ -350,8 +355,8 @@ void mxvtest(){
 }
 
 BOOST_AUTO_TEST_CASE(ProductMxM){
-  mxmtest<fmatrix>();
-  mxmtest<dmatrix>();
+  mxmtest<fmatrix, float>();
+  mxmtest<dmatrix, double>();
 }
 
 BOOST_AUTO_TEST_CASE(ProductMxV){
