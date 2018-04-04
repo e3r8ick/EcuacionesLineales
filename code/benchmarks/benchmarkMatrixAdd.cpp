@@ -67,7 +67,6 @@ class benchAddInPlaceFallback : public benchAdd<T> {
 public:
   /// Constructor
   benchAddInPlaceFallback(const size_t n) : benchAdd<T>(n) { }
-  
   // Evaluate add in-place
   inline void eval() {
     anpi::fallback::add(this->_a,this->_b);

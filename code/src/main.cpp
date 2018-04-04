@@ -15,83 +15,56 @@
 #include "LUDoolittle.hpp"
 #include "LUCrout.hpp"
 #include "Pivot.hpp"
+#include "QRdecomp.hpp"
 
 int main() {
 
-  // Some example code
-   // Some example code
-  //anpi::Matrix<float> A = { {-1,-2,1,2},
-    //                        { 2, 0,1,2},
-      //                      {-1,-1,0,1},
-        //                    { 1, 3,-1,1} };
-  //anpi::Matrix<float> A = {{0, 0,2},{-1, 5 ,-2},{3,6,7}};
-  anpi::Matrix<float> LU;
-  anpi::Matrix<float> A = {{1, 3, 5},{-2, 4 ,6},{5,0,3}};
+    anpi::Matrix<float> A = { {-1,-2,1},
+                          { 2, 0,1},
+                          {-1,-1,0}
+                          };
+  anpi::InitializationType init=anpi::InitializationType::DoNotInitialize;
+  anpi::Matrix<float> Q=anpi::Matrix<float>(A.rows(),A.cols(),init);
+  anpi::Matrix<float> R=anpi::Matrix<float>(A.rows(),A.cols(),init);
+  anpi::qr(A,Q,R);
 
-  std::vector<size_t> p;
-  //anpi::luDoolittle(A,LU,p);
-  anpi::Matrix<float> U, L;
-  std::cout << "crout" << std::endl;
-  anpi::Matrix<float> LUC;
-  std::vector<size_t> pC;
-  anpi::luCrout(A,LUC,pC);
-  anpi::unpackCrout(LUC, L, U );
+  bool test =false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //Ejemplo de producto vector matrix;
-  /*anpi::Matrix<float> A = { {-1,1},
-                            { 0,1},
-                            {-1,0},
-                            };
-  anpi::Matrix<float> LU = {{1 , 2 , 3 },  {2, 1, 3}, {0, 2, -3}};
-  
-  std::vector<float> p = {1 , 3, -2};
-  std::vector<float> m = p*A;
-  for (int i=0; i<m.size(); ++i){
-    std::cout << m[i] << "\t"  << std::endl;
-  }
-
-  */
-  //anpi::luDoolittle(A,LU,p);
-
-
-
-
-
-
-  /*
-  Ejemplo multi matrices:
-
-  anpi::Matrix<float> A = { {-1,-2,1},
-                            { 2, 0,1},
-                            {-1,-1,0},
-                            };
-  anpi::Matrix<float> LU = {{1 , 2 , 3 },  {2, 1, 3}, {0, 2, -3}};
-  
-  anpi::Matrix<float> m = A * LU;
-  for (int i = 0; i < m.rows(); i++){
-    for (int j = 0; j< m.cols(); ++j){
-      std::cout << m[i][j] << "\t"; 
+  anpi::Matrix<float> Qt=anpi::Matrix<float>(A.rows(),A.cols(),init);
+  anpi::Matrix<float> I=anpi::Matrix<float>(A.rows(),A.cols(),init);
+  for(int i=0;i<A.rows();i++){
+    for(int j=0;j<A.cols();j++){
+      Qt(j,i)=Q(i,j);
     }
-    std::cout << std::endl;
   }
-  */
 
-  return EXIT_FAILURE;
+  for(int i=0;i<A.rows();i++){
+    for(int j=0;j<A.cols();j++){
+      I(i,j)=0;
+      I(i,i)=1;
+    }
+  }
+
+  anpi::Matrix<float> tmp=anpi::Matrix<float>(A.rows(),A.cols(),init);
+  tmp=Qt*R;
+
+
+  test= (I==tmp);
+
+  std::cout << "A" << std::endl;
+  printM(A);
+  std::cout << "Q" << std::endl;
+  printM(Q);
+  std::cout << "R" << std::endl;
+  printM(R);
+  std::cout << "I" << std::endl;
+  printM(I);
+  std::cout << "QT" << std::endl;
+  printM(Qt);
+  std::cout << "tmp" << std::endl;
+  printM(tmp);
+
+  std::cout<<"Q*Qt ? =I : "<<test<<std::endl;
+  return 1;
 }
   

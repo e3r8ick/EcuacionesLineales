@@ -63,7 +63,7 @@ namespace anpi
 						sum = sum + R(i,k)*R(i,j);
 					} 
 					tau=sum/c[k];
-					for(int i=k;i<k;i++){
+					for(int i=k;i<n;i++){
 						R(i,j)= R(i,j)-tau*R(i,k);
 					}
 				}
