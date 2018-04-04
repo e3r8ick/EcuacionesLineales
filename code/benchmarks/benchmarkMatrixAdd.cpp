@@ -9,18 +9,18 @@
  */
 
 
-#include <boost/test/unit_test.hpp>
+/*#include <boost/test/unit_test.hpp>
 
 
 #include <iostream>
 #include <exception>
 #include <cstdlib>
-#include <complex>
+#include <complex>*/
 
 /**
  * Unit tests for the matrix class
  */
-#include "benchmarkFramework.hpp"
+/*#include "benchmarkFramework.hpp"
 #include "Matrix.hpp"
 #include "Allocator.hpp"
 
@@ -112,11 +112,11 @@ public:
     anpi::simd::add(this->_a,this->_b,this->_c);
   }
 };
-
+*/
 /**
  * Instantiate and test the methods of the Matrix class
  */
-BOOST_AUTO_TEST_CASE( Add ) {
+/*BOOST_AUTO_TEST_CASE( Add ) {
 
   std::vector<size_t> sizes = {  24,  32,  48,  64,
                                  96, 128, 192, 256,
@@ -194,3 +194,4 @@ BOOST_AUTO_TEST_CASE( Add ) {
 }
   
 BOOST_AUTO_TEST_SUITE_END()
+*/
