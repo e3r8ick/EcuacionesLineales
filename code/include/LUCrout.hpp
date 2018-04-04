@@ -75,6 +75,8 @@ void unpackCrout(const Matrix<T> &LU,
    *
    * @throws anpi::Exception if matrix cannot be decomposed, or input
    *         matrix is not square.
+   * @throws anpi::Exception if after permutation there's a 0 in the 
+   *         diagonal
    */
 
 template <typename T>
