@@ -64,7 +64,7 @@ namespace anpi {
 
   		}
 
-
+      //Test R is upper matrix
   		for(int j=0;j<c;j++){
     		for(int i=j+1;i<r;i++){
     			BOOST_CHECK(std::abs(R(i,j))<eps);
@@ -72,6 +72,7 @@ namespace anpi {
     		}
   		}		
 
+      //test A== Qt*R
   		tmp=Qt*R;
   		for(int i =0;i<r;++i){
   			for(int j=0;j<c;++j){
@@ -80,6 +81,17 @@ namespace anpi {
 
   		}
 
+      //test Solve { {-1,-2,1}, { 2, 0,1}, {-1,-1,0} }*{x,y,z}={1,0,-1}
+      std::vector<T> b={1,0,-1};
+      std::vector<T> x;
+      anpi::solveQR(A,x,b);
+      std::vector<T> xRef={-3,4,6};
+      
+      for(int i =0;i<r;++i){
+        BOOST_CHECK(std::abs(x[i]-xRef[i])<eps);
+      }
+
+      
   	}
   }
 }
