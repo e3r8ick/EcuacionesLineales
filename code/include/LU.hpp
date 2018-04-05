@@ -30,11 +30,8 @@ inline void lu(const anpi::Matrix<T> &A,
                anpi::Matrix<T> &LU,
                std::vector<size_t> &p)
 {
-    if(A.rows()<=4){
-        anpi::luCrout(A, LU, p);
-    }else{
-        anpi::luDoolittle(A, LU, p);
-    }
+    std::cout << "benchmarks not implemented yet, call doolittle by default" << std::endl;
+    anpi::luDoolittle(A, LU, p);
 }
 
 } //anpi
