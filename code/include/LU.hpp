@@ -30,7 +30,7 @@ inline void lu(const anpi::Matrix<T> &A,
                anpi::Matrix<T> &LU,
                std::vector<size_t> &p)
 {
-    std::cout << "benchmarks not implemented yet, call doolittle by default" << std::endl;
+    std::cout << "Analizando las graficas el método más rápido es Doolittle" << std::endl;
     anpi::luDoolittle(A, LU, p);
 }
 
