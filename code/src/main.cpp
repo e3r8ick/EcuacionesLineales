@@ -20,7 +20,7 @@
 int main()
 {
 
-  anpi::Matrix<float> A = {{-1, -2, 1},
+  /*anpi::Matrix<float> A = {{-1, -2, 1},
                            {2, 0, 1},
                            {-1, -1, 0}};
   anpi::Matrix<float> LU,L,U,LUC,LC,UC,Q,R,Qt, Ai;
@@ -83,5 +83,5 @@ int main()
   for (int i = 0; i < (int) x.size(); ++i){
     std::cout << x[i] << "\t";
   }
-  std::cout << std::endl;
+  std::cout << std::endl;*/
   }

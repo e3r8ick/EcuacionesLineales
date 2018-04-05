@@ -479,7 +479,7 @@ namespace anpi
       result[i] = 0;
       for (int j = 0; j < rows; ++j){        
         result[i] += a[j][i]*b[j];
-        std::cout << "b sub " << j << ": " << b[j] << "* \ta sub" << j << ", " << i << ": " << a[j][i] << std::endl;
+       // std::cout << "b sub " << j << ": " << b[j] << "* \ta sub" << j << ", " << i << ": " << a[j][i] << std::endl;
       } // end for columns
     }//end for rows
     return result;

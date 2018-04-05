@@ -197,7 +197,7 @@ namespace anpi {
   for (size_t s=0;s<_nums;++s ) {                                  \
     const size_t size = sizes[s];                                  \
                                                                    \
-    std::cout << "Testing size " << size << std::endl;             \
+    //std::cout << "Testing size " << size << std::endl;             \
                                                                    \
     durat* _row = _mat[s];                                         \
                                                                    \

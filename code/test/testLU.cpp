@@ -75,10 +75,6 @@ namespace anpi {
         const T eps = std::numeric_limits<T>::epsilon();
         BOOST_CHECK(Ar.rows()==A.rows());
         BOOST_CHECK(Ar.cols()==A.cols());
-        std::cout << "A in test: " << std::endl;
-        printM(A);
-        std::cout << "L*U (Ar) in test: " << std::endl;
-        printM(Ar);
         
         for (size_t i=0;i<Ar.rows();++i) {
           for (size_t j=0;j<Ar.cols();++j) {
