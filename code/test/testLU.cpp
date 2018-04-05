@@ -126,6 +126,23 @@ namespace anpi {
         //primera solución 6
         BOOST_CHECK(abs(x[2]-6) < eps);
       }
+
+      //Test solve LU with an error 
+      {
+        anpi::Matrix<float> A = {{0, 0, 0},
+                           {0, 0, 0},
+                           {0, 0, 0}};
+        std::vector<float> b = {1,0,-1};
+        std::vector<float> x;
+
+        try {
+          solveLU(A, x, b);
+          BOOST_CHECK_MESSAGE(false,"Divide by 0 not catch");
+        }
+        catch(anpi::Exception& exc) {
+          BOOST_CHECK_MESSAGE(true,"Divide by 0 catch");
+        }
+      }
     }
 
   } // test
