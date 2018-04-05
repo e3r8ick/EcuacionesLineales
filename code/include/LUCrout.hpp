@@ -127,7 +127,7 @@ void luCrout(const Matrix<T> &A,
       {
         LU[j][k] = (LU[j][k] - sum) / LU[j][j];
       }
-      catch (Exception e)
+      catch (anpi::Exception& e)
       {
         throw anpi::Exception("Imposible realizar la descomposición con 0 en la diagonal");
       }
