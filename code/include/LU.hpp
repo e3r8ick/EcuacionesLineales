@@ -30,8 +30,11 @@ inline void lu(const anpi::Matrix<T> &A,
                anpi::Matrix<T> &LU,
                std::vector<size_t> &p)
 {
-    std::cout << "Analizando las graficas el método más rápido es Doolittle" << std::endl;
-    anpi::luDoolittle(A, LU, p);
+    if(A.rows()<=4){
+        anpi::luCrout(A, LU, p);
+    }else{
+        anpi::luDoolittle(A, LU, p);
+    }
 }
 
 } //anpi

@@ -120,7 +120,7 @@ public:
  */
 BOOST_AUTO_TEST_CASE( LU ) {
 
-  std::vector<size_t> sizes = {  24,  32,  48,  64,
+  std::vector<size_t> sizes = { 2,3,4,5,10, 24,  32,  48,  64,
                                  96, 128, 192, 256,
                                 384, 512};
 
