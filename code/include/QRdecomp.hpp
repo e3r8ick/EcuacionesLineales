@@ -4,9 +4,6 @@
 #include <functional>
 #include <vector>
 #include <algorithm>
-#include "boost/math/tools/polynomial.hpp"
-using namespace boost::math::tools;
-
 #include "Exception.hpp"
 #include "Matrix.hpp"
 
@@ -33,7 +30,6 @@ void qr(const anpi::Matrix<T> &A,
 		anpi::Matrix<T> &R)
 {
 	int n = A.rows();
-	bool singular = false;
 	Q = anpi::Matrix<T>(n, n, 0.0);
 	R = A;
 	std::vector<T> c(n);
@@ -49,7 +45,6 @@ void qr(const anpi::Matrix<T> &A,
 		}
 		if (scale == 0.0)
 		{
-			singular = true;
 			c[k] = d[k] = 0.0;
 			throw anpi::Exception("Intentando resolver sistema singular");
 		}
@@ -94,7 +89,6 @@ void qr(const anpi::Matrix<T> &A,
 	d[n - 1] = -R(n - 1, n - 1);
 	if (d[n - 1] == 0.0)
 	{
-		singular = true;
 		throw anpi::Exception("Intentando resolver sistema singular");
 	}
 
@@ -158,6 +152,7 @@ bool solveQR(const anpi::Matrix<T> &A,
 	anpi::qr(A, Q, R);
 	qtMult(b, x, Q);
 	rSolve(x, x, R);
+	return true;
 }
 
 template <typename T>

@@ -25,13 +25,17 @@ namespace anpi
 {
 
 
+/***
+ *  Uses the doolittle algorithm every time because the graphic
+ * shows that it is the more efficient method for any size
+ * */
 template <typename T>
 inline void lu(const anpi::Matrix<T> &A,
                anpi::Matrix<T> &LU,
                std::vector<size_t> &p)
 {
-    std::cout << "benchmarks not implemented yet, call doolittle by default" << std::endl;
     anpi::luDoolittle(A, LU, p);
+    
 }
 
 } //anpi
