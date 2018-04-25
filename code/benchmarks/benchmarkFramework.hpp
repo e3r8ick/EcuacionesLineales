@@ -195,7 +195,7 @@ namespace anpi {
                                                                    \
   /* test each size */                                             \
   for (size_t s=0;s<_nums;++s ) {                                  \
-    const size_t size = sizes[s];                                  \
+    //const size_t size = sizes[s];                                  \
                                                                    \
     //std::cout << "Testing size " << size << std::endl;             \
                                                                    \
@@ -216,6 +216,5 @@ namespace anpi {
                                                                    \
   ::anpi::benchmark::computeStats(sizes,_mat,times);               \
 }
-
 
 #endif

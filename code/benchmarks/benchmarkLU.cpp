@@ -26,7 +26,7 @@
 #include "LUDoolittle.hpp"
 #include "LUCrout.hpp"
 
-BOOST_AUTO_TEST_SUITE( LU )
+/*BOOST_AUTO_TEST_SUITE( LU )
 
 /// Benchmark for addition operations
 template<typename T>
@@ -113,12 +113,12 @@ public:
   inline void eval() {
     anpi::luCrout(this->A,this->LU, this->p);
   }
-};
+};*/
 
 /**
  * Instantiate and test the methods of the Matrix class
  */
-BOOST_AUTO_TEST_CASE( LU ) {
+/*BOOST_AUTO_TEST_CASE( LU ) {
 
   std::vector<size_t> sizes = { 2,3,4,5,10, 24,  32,  48,  64,
                                  96, 128, 192, 256,
@@ -194,4 +194,4 @@ BOOST_AUTO_TEST_CASE( LU ) {
   ::anpi::benchmark::show();
 }
   
-BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()*/
