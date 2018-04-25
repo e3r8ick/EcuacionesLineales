@@ -15,8 +15,11 @@
 #include "RobotLegendario.hpp"
 int main()
 {
-  std::cout << anpi::mapeo(1,2,2,2,5) << std::endl;
-  std::cout << anpi::mapeo(1,1,1,2,5) << std::endl;
-  std::cout << anpi::mapeo(0,2,1,2,5) << std::endl;
-  std::cout << anpi::mapeo(0,2,0,3,5) << std::endl;
+  
+  anpi::Matrix<int> A = anpi::Matrix<int>(5*5, 4, 0);
+  nodos(5,5,A,0);
+  std::cout<<A[19][0]<<std::endl;
+  std::cout<<A[19][1]<<std::endl;
+  std::cout<<A[19][2]<<std::endl;
+  std::cout<<A[19][3]<<std::endl;
 }
