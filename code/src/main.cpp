@@ -8,18 +8,31 @@
  * @Date  : 24.02.2018
  */
 
+#include <fstream>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-
+#define cimg_display 0
+#include "CImg.h"
+#include "Pivot.hpp"
 #include "RobotLegendario.hpp"
+using namespace cimg_library;
 int main()
 {
-  
-  anpi::Matrix<int> A = anpi::Matrix<int>(5*5, 4, 0);
-  nodos(5,5,A,0);
-  std::cout<<A[19][0]<<std::endl;
-  std::cout<<A[19][1]<<std::endl;
-  std::cout<<A[19][2]<<std::endl;
-  std::cout<<A[19][3]<<std::endl;
+  CImg <unsigned char> image;
+  int iin, ifin, jin, jfin;
+  iin = 0;
+  jin = 2;
+  ifin = 1;
+  jfin = 1;
+  image.assign("image.bmp");
+  int n = image.width();
+  int m = image.height();
+  anpi::Matrix<int> A = anpi::Matrix<int>(2*m*n-(m+n), 2*m*n-(m+n), 0);
+  std::vector<int> resistors = anpi::getResistors(image);
+  std::vector<int> b(2*m*n-(m+n),0);
+  anpi::nodos(m, n, A, iin, jin, ifin, jfin, b);
+  anpi::mallas(m, n, A, resistors);
+  return 0 ;
+
 }
