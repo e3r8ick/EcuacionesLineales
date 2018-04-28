@@ -44,7 +44,7 @@ int mapeo(int i1, int j1, int i2, int j2, int m, int n)
     int iMayor, iMenor, jMenor;
 
     //sacamos el mayor y menor de i 
-    if(i1 > i2){
+    if(i1 >= i2){
         iMayor = i1;
         iMenor = i2;
     }else{
@@ -53,7 +53,7 @@ int mapeo(int i1, int j1, int i2, int j2, int m, int n)
     }
 
     //sacamos el menor de j
-    if(j1 > j2){
+    if(j1 >= j2){
         jMenor = j2;
     }else{
         jMenor = j1;
@@ -129,48 +129,71 @@ bool isCorner(int i, int j, int m, int n){
     }
 }
 
-void nodos(int m, int n, Matrix<int> &A, int iin, int jin, 
-           int ifin, int jfin, std::vector<int> b){
+template <typename T>
+void nodos(int m, int n, Matrix<T> &A, int iin, int jin, 
+           int ifin, int jfin, std::vector<T> b){
     bool eliminado = false;
     int index = 0;
     int m1, m2, m3, m4;
     for(int i=0; i < m; ++i){
         for(int j=0; j<n; ++j){
+            if (index >= (2*m*n - m - n)){
+                std::cout << "here" << std::endl;
+            }
+            
             m1=mapeo(i-1, j, i ,j,m, n);
             m2=mapeo(i, j, i,j+1,m,n);
             m3=mapeo(i+1, j, i,j,m,n);
             m4=mapeo(i, j-1, i ,j,m,n);
             
             if (m4 != 0){
-                A[index][m4-1] = 1;
+                A[index][m4-1] = 1.0;
             }if (m1 != 0){
-                A[index][m1-1] = 1;
+                A[index][m1-1] = 1.0;
             }if (m2 != 0){
-                A[index][m2-1] = -1;    
+                A[index][m2-1] = -1.0;    
             }if (m3 != 0){
-                A[index][m3-1] = -1;
+                A[index][m3-1] = -1.0;
             }
             
+<<<<<<< HEAD
             if ((i == iin) && j == jin){ //inicio
                 b[index] = 1;
+=======
+            if ((i == iin) && (j == jin)){ //inicio
+                std::cout << "inicio: ";
+                b[index] = 1.0;
+                std::cout << " /inicio" <<std::endl;
+>>>>>>> 574739d8e8c21b4cc481602bfba3ddd0d1f38850
                 ++index;
-            }else if ((i == ifin && j == jfin)){ // final
-                b[index] = -1;
+            }else if ((i == ifin) && (j == jfin)){ // final
+                std::cout << "final: ";
+
+                b[index] = -1.0;
+                std::cout << " /final" <<std::endl;
                 ++index;
+                
             }else if (!eliminado && isCorner(i, j, m, n)){
-                A[index][m1-1] = 0;
-                A[index][m2-1] = 0;
-                A[index][m3-1] = 0;
+                if (m4 != 0){
                 A[index][m4-1] = 0;
+                }if (m1 != 0){
+                    A[index][m1-1] = 0;
+                }if (m2 != 0){
+                    A[index][m2-1] = 0;    
+                }if (m3 != 0){
+                    A[index][m3-1] = 0;
+                }
                 eliminado = true;
             }else{
                 ++index;
             }
         } // end for j
     }//end for i
+    std::cout << "end nodos" << std::endl;
 }
 
-void mallas(int m, int n, Matrix<int> &A, const std::vector<int> &resistors){
+template <typename T>
+void mallas(int m, int n, Matrix<T> &A, const std::vector<int> &resistors){
     int index = m*n -1; //initial index to place the equations in A
     int m1, m2, m3, m4;
     for (int i = 0; i < (m-1); ++i){
@@ -181,10 +204,10 @@ void mallas(int m, int n, Matrix<int> &A, const std::vector<int> &resistors){
             m3 = anpi::mapeo(i+1, j, i+1, j+1, m ,n); // abajo acostada (neg)
             m4 = anpi::mapeo(i , j, i+1, j, m, n); //abajo adyancente al nodo (neg)
 
-            A[index][m1-1] = resistors[m1-1];
-            A[index][m2-1] = resistors[m2-1];
-            A[index][m3-1] = -resistors[m3-1];
-            A[index][m4-1] = -resistors[m4-1];    
+            A[index][m1-1] = (T) resistors[m1-1];
+            A[index][m2-1] = (T) resistors[m2-1];
+            A[index][m3-1] = (T) -resistors[m3-1];
+            A[index][m4-1] = (T) -resistors[m4-1];    
             index++;       
         }
     }
@@ -199,7 +222,7 @@ std::vector<int> getResistors(CImg<unsigned char> image){
   std::vector<int> resistors;
   std::vector<int> coordenadas;
   int i1,i2,j1,j2;
-  int R1, R2, G1, G2, B1, B2;
+  int R1, R2, G1, G2, B1, B2; 
   int colorThreshold = 255; //allow option to use light-almost white colors as white if adjusted
   int rAmount = 2*w*h - (w+h);
 
