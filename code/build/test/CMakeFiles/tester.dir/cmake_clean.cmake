@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tester.dir/testMain.cpp.o"
   "CMakeFiles/tester.dir/testMatrix.cpp.o"
   "CMakeFiles/tester.dir/testQR.cpp.o"
+  "CMakeFiles/tester.dir/testRobot.cpp.o"
   "tester.pdb"
   "tester"
 )

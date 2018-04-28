@@ -45,3 +45,15 @@ test/CMakeFiles/tester.dir/testQR.cpp.o: ../include/QRdecomp.hpp
 test/CMakeFiles/tester.dir/testQR.cpp.o: ../include/bits/MatrixArithmetic.hpp
 test/CMakeFiles/tester.dir/testQR.cpp.o: ../test/testQR.cpp
 
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Allocator.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/AnpiConfig.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Exception.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/HasType.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Intrinsics.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Matrix.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Matrix.tpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/Pivot.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/RobotLegendario.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../include/bits/MatrixArithmetic.hpp
+test/CMakeFiles/tester.dir/testRobot.cpp.o: ../test/testRobot.cpp
+

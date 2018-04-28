@@ -151,7 +151,7 @@ void nodos(int m, int n, Matrix<int> &A, int iin, int jin,
                 A[index][m3-1] = -1;
             }
             
-            if ((i == iin) && j == jin)){ //inicio
+            if ((i == iin) && j == jin){ //inicio
                 b[index] = 1;
                 ++index;
             }else if ((i == ifin && j == jfin)){ // final

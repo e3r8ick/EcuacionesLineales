@@ -19,7 +19,7 @@ descomposicion:
 	3. QR =A
 */
 
-namespace anpi {
+/*namespace anpi {
   namespace test {
   	template<typename T>
   	void qrTest(){
@@ -108,4 +108,4 @@ BOOST_AUTO_TEST_CASE(QRdecomp)
 
 
 
-BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()*/

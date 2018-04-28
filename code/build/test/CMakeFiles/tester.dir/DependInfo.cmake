@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/test/testMain.cpp" "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build/test/CMakeFiles/tester.dir/testMain.cpp.o"
   "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/test/testMatrix.cpp" "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build/test/CMakeFiles/tester.dir/testMatrix.cpp.o"
   "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/test/testQR.cpp" "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build/test/CMakeFiles/tester.dir/testQR.cpp.o"
+  "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/test/testRobot.cpp" "/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build/test/CMakeFiles/tester.dir/testRobot.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

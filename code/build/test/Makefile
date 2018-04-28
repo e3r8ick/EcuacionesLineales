@@ -271,6 +271,33 @@ testQR.cpp.s:
 	cd /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build && $(MAKE) -f test/CMakeFiles/tester.dir/build.make test/CMakeFiles/tester.dir/testQR.cpp.s
 .PHONY : testQR.cpp.s
 
+testRobot.o: testRobot.cpp.o
+
+.PHONY : testRobot.o
+
+# target to build an object file
+testRobot.cpp.o:
+	cd /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build && $(MAKE) -f test/CMakeFiles/tester.dir/build.make test/CMakeFiles/tester.dir/testRobot.cpp.o
+.PHONY : testRobot.cpp.o
+
+testRobot.i: testRobot.cpp.i
+
+.PHONY : testRobot.i
+
+# target to preprocess a source file
+testRobot.cpp.i:
+	cd /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build && $(MAKE) -f test/CMakeFiles/tester.dir/build.make test/CMakeFiles/tester.dir/testRobot.cpp.i
+.PHONY : testRobot.cpp.i
+
+testRobot.s: testRobot.cpp.s
+
+.PHONY : testRobot.s
+
+# target to generate assembly for a file
+testRobot.cpp.s:
+	cd /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/build && $(MAKE) -f test/CMakeFiles/tester.dir/build.make test/CMakeFiles/tester.dir/testRobot.cpp.s
+.PHONY : testRobot.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -296,6 +323,9 @@ help:
 	@echo "... testQR.o"
 	@echo "... testQR.i"
 	@echo "... testQR.s"
+	@echo "... testRobot.o"
+	@echo "... testRobot.i"
+	@echo "... testRobot.s"
 .PHONY : help
 
 

@@ -91,6 +91,10 @@ iostream
 -
 algorithm
 -
+vector
+-
+CImg.h
+../include/CImg.h
 Exception.hpp
 ../include/Exception.hpp
 Matrix.hpp
@@ -105,12 +109,18 @@ type_traits
 -
 
 /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/src/main.cpp
+fstream
+-
 cstdlib
 -
 iostream
 -
 vector
 -
+CImg.h
+/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/src/CImg.h
+Pivot.hpp
+/home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/src/Pivot.hpp
 RobotLegendario.hpp
 /home/e3r8ick/ProyectosTec/Analisis/Proyecto2/Tarea4/code/src/RobotLegendario.hpp
 
