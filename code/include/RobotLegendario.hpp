@@ -156,15 +156,10 @@ void nodos(int m, int n, Matrix<T> &A, int iin, int jin,
                 A[index][m3-1] = -1.0;
             }
             
-<<<<<<< HEAD
-            if ((i == iin) && j == jin){ //inicio
-                b[index] = 1;
-=======
             if ((i == iin) && (j == jin)){ //inicio
                 std::cout << "inicio: ";
                 b[index] = 1.0;
                 std::cout << " /inicio" <<std::endl;
->>>>>>> 574739d8e8c21b4cc481602bfba3ddd0d1f38850
                 ++index;
             }else if ((i == ifin) && (j == jfin)){ // final
                 std::cout << "final: ";
